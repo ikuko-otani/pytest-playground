@@ -1,5 +1,5 @@
 # conftest.py — shared fixtures for Chapter T-01
-# 日本語訳：T-01章の共有フィクスチャ（現時点は空、後の章で活用）
+# T-01章の共有フィクスチャ（現時点は空、後の章で活用）
 
 # 💡 conftest.py is automatically discovered by pytest — no import needed.
 # 💡 conftest.py は pytest が自動検出する — import 不要。

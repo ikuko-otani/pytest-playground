@@ -1,5 +1,5 @@
 # Chapter T-01: Getting Started & AAA Pattern
-# 日本語訳：第T-01章：はじめてのpytestとAAAパターン
+# 第T-01章：はじめてのpytestとAAAパターン
 # Pattern: AAA (Arrange - Act - Assert)
 # Pattern: AAA（準備 - 実行 - 検証）
 
@@ -27,21 +27,24 @@ class TestAdd:
         # Arrange -------------------------------------------------------
         # TODO: define a and b
         # TODO: a と b を定義してください
+        a, b = 3, 4
 
         # Act -----------------------------------------------------------
         # TODO: call add(a, b) and capture the result
         # TODO: add(a, b) を呼び出して結果を変数に格納してください
+        result: int | float = add(a, b)
 
         # Assert --------------------------------------------------------
         # TODO: assert result equals expected value
         # TODO: result が期待値と等しいことをアサートしてください
-        pass
+        assert result == 7
 
     def test_add_with_zero(self) -> None:
         # Arrange / Act / Assert
         # TODO: adding zero should return the original number
         # TODO: 0 を足しても元の数と等しいことを確認してください
-        pass
+        result: int | float = add(5, 0)
+        assert result == 5
 
     def test_add_floats_with_approx(self) -> None:
         # 💡 pytest.approx: use for floating-point comparisons
@@ -49,7 +52,9 @@ class TestAdd:
         # Arrange / Act / Assert
         # TODO: 0.1 + 0.2 should approximately equal 0.3
         # TODO: 0.1 + 0.2 が 0.3 とほぼ等しいことを確認してください
-        pass
+        result: float = add(0.1, 0.2)
+        assert result == pytest.approx(0.3)
+        # 💡 0.1 + 0.2 == 0.3 は Python では False になる浮動小数点の罠
 
 
 # ===========================================================================

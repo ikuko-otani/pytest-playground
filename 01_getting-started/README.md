@@ -1,13 +1,13 @@
 # T-01: Getting Started & AAA Pattern
 
-**Ref:** https://docs.pytest.org/en/stable/getting-started.html  
-**Branch:** `feature/pytest-01-getting-started`  
+**Ref:** https://docs.pytest.org/en/stable/getting-started.html
+**Branch:** `feature/pytest-01-getting-started`
 **Sprint:** L-W3 / S2 (Day 14 of 73-day sprint)
 
 ## What you learn in this chapter
 
-<!-- English: Learning objectives for T-01 -->
-<!-- 日本語訳：T-01の学習目標 -->
+<!-- Learning objectives for T-01 -->
+<!-- T-01の学習目標 -->
 
 - pytest installation and test discovery rules (`test_*.py`, `*_test.py`)
   （pytest のインストールとテスト探索ルール）

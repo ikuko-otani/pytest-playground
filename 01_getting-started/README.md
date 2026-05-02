@@ -27,7 +27,7 @@
 ## Directory structure
 
 ```
-02_getting-started/
+01_getting-started/
 ├── src/
 │   └── sut.py          # System Under Test (テスト対象コード)
 ├── tests/
@@ -41,15 +41,15 @@
 ```bash
 # Run all tests in this chapter (from repo root)
 # このチャプターの全テストを実行（リポジトリルートから）
-pytest 02_getting-started/ -v
+pytest 01_getting-started/ -v
 
 # Run with coverage
 # カバレッジ付きで実行
-pytest 02_getting-started/ --cov=02_getting-started/src --cov-report=term-missing -v
+pytest 01_getting-started/ --cov=01_getting-started/src --cov-report=term-missing -v
 
 # Run only one class
 # 1クラスだけ実行
-pytest 02_getting-started/ -v -k "TestAdd"
+pytest 01_getting-started/ -v -k "TestAdd"
 ```
 
 ## Coverage result
@@ -57,5 +57,7 @@ pytest 02_getting-started/ -v -k "TestAdd"
 <!-- Update after completing all steps -->
 <!-- 全ステップ完了後に記録してください -->
 
-- Coverage: `___%`
+- Coverage: `100%`
 - Missing lines: (none)
+
+💡 「カバレッジ100%なら完璧？」→ NO。test_add_with_zero で pass のまま100%になった偽の例を思い出して。カバレッジは"実行した行"を数えるだけ。アサートの質は測れない。

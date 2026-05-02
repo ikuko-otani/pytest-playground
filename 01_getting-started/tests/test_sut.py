@@ -64,21 +64,25 @@ class TestAdd:
 class TestDivide:
     def test_divide_normal(self) -> None:
         # TODO: 10 / 2 == 5.0
-        pass
+        result: float = divide(10.0, 2.0)
+        assert result == pytest.approx(5.0)
 
     def test_divide_by_zero_raises(self) -> None:
         # 💡 pytest.raises is the idiomatic way to assert exceptions
         # 💡 pytest.raises が例外アサーションの正しい書き方
         # TODO: calling divide(x, 0) should raise ValueError
         # TODO: divide(x, 0) が ValueError を送出することを確認してください
-        pass
+        with pytest.raises(ValueError):
+            divide(10.0, 0.0)
+        # 💡 pytest.raises をコンテキストマネージャとして使うのが慣用的
 
     def test_divide_by_zero_message(self) -> None:
         # 💡 match= accepts a regex matched against the exception message
         # 💡 match= は例外メッセージに対する正規表現
         # TODO: use pytest.raises(ValueError, match=r"zero") to check the message
         # TODO: match=r"zero" を使ってエラーメッセージも確認してください
-        pass
+        with pytest.raises(ValueError, match=r"zero"):
+            divide(10.0, 0.0)
 
 
 # ===========================================================================

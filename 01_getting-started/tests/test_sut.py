@@ -83,6 +83,9 @@ class TestDivide:
         # TODO: match=r"zero" を使ってエラーメッセージも確認してください
         with pytest.raises(ValueError, match=r"zero"):
             divide(10.0, 0.0)
+        # 💡 match= に正規表現を渡すとエラーメッセージも検証できる
+        # 🧠 なぜ match= まで書くか？ エラーコードが変わったとき（例："division by zero" → "zero division"）に気づける。
+        # エラーメッセージもコントラクトの一部。
 
 
 # ===========================================================================
@@ -94,4 +97,11 @@ class TestGreet:
         # 🧠 Testing WHAT the function returns, not HOW it is implemented
         # 🧠 実装の詳細ではなく、返り値（振る舞い）をテストする
         # TODO: greet("Alice") should contain "Alice"
-        pass
+        # Arrange
+        name = "Alice"
+        # Act
+        result: str = greet(name)
+        # Assert
+        assert "Alice" in result
+        # 🧠 assert result == "Hello, Alice!" より assert "Alice" in result の方が振る舞いをテストしている。
+        # フォーマットが "Hi, Alice!" に変わっても「名前が含まれる」という要件は変わらない。

@@ -1,7 +1,7 @@
 # Chapter T-02: Fixtures
 # Ref: https://docs.pytest.org/en/stable/how-to/fixtures.html
 # Pattern: AAA (Arrange - Act - Assert)
-# 日本語訳：AAAパターン（準備 - 実行 - 検証）でテストを書く。
+# AAAパターン（準備 - 実行 - 検証）でテストを書く。
 
 import pytest
 from src.sut import BankAccount, add

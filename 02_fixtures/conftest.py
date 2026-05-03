@@ -1,7 +1,7 @@
 # conftest.py — shared fixtures for 02_fixtures chapter
-# 日本語訳：02_fixtures章の共有fixture定義ファイル。
+# 02_fixtures章の共有fixture定義ファイル。
 # Fixtures defined here are automatically available to all tests in this directory.
-# 日本語訳：ここで定義したfixtureはこのディレクトリ配下の全テストから自動で利用できる。
+# ここで定義したfixtureはこのディレクトリ配下の全テストから自動で利用できる。
 
 import pytest
 from src.sut import BankAccount

@@ -74,13 +74,33 @@ def test_module_account_identity_2(module_account: BankAccount) -> None:
 # Step 3: autouse と Factory as Fixture
 # ---------------------------------------------------------------------------
 
+
 # TODO: Define a fixture `make_account` that returns a factory function:
 #       def _factory(owner: str, balance: float = 0.0) -> BankAccount
 # TODO: `make_account` fixture で BankAccount を生成するファクトリ関数を返してください。
+@pytest.fixture
+def make_account():
+    # Factory as Fixture: returns a callable, not a BankAccount directly.
+    # BankAccountを直接返すのではなく、生成関数を返す。
+    created: list[BankAccount] = []
+
+    def _factory(owner: str, balance: float = 0.0) -> BankAccount:
+        acc = BankAccount(owner, balance)
+        created.append(acc)
+        return acc
+
+    yield _factory
+    print(f"\n[factory teardown] created {len(created)} account(s)")
 
 
 # TODO: Write tests using `make_account` to create accounts with different balances.
 # TODO: `make_account` を使って異なる残高の口座を作るテストを書いてください。
+def test_factory_two_accounts(make_account) -> None:
+    alice: BankAccount = make_account("Alice", 200.0)  # Arrange
+    bob: BankAccount = make_account("Bob", 50.0)  # Arrange
+    alice.withdraw(50.0)  # Act
+    assert alice.balance == 150.0  # Assert
+    assert bob.balance == 50.0  # Assert (独立している)
 
 
 # ---------------------------------------------------------------------------

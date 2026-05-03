@@ -6,6 +6,7 @@
 import pytest
 from src.sut import BankAccount
 
+
 # ---------------------------------------------------------------------------
 # TODO: Define `module_account` fixture with scope="module".
 #       Create BankAccount("Module-Shared", 500.0) and yield it.
@@ -14,6 +15,13 @@ from src.sut import BankAccount
 # TODO: scope="module" の `module_account` fixture を定義してください。
 #       BankAccount("Module-Shared", 500.0) を yield し、
 #       teardown時にprintでライフサイクルを確認できるようにしてください。
+@pytest.fixture(scope="module")
+def module_account() -> BankAccount:
+    # Shared across all tests in this module — created once, not per test.
+    # このモジュール内の全テストで共有。テストごとではなく1回だけ生成
+    acc = BankAccount("Module-Shared", 500.0)
+    yield acc
+    print(f"\n[module teardown] {acc.owner} final balance: {acc.balance}")
 
 
 # ---------------------------------------------------------------------------

@@ -54,9 +54,19 @@ def test_withdraw_insufficient(account: BankAccount) -> None:
 # NOTE: `module_account` fixture is defined in conftest.py with scope="module".
 # NOTE: `module_account` fixture は conftest.py に scope="module" で定義します。
 
+
 # TODO: Write two tests that BOTH request `module_account`.
 #       Verify that both tests receive the SAME object (shared instance).
 # TODO: 両テストが同一オブジェクトを受け取ることを確認する2つのテストを書いてください。
+def test_module_account_identity_1(module_account: BankAccount) -> None:
+    assert module_account.owner == "Module-Shared"
+    module_account.deposit(10.0)  # side effect: balance changes for next test
+
+
+def test_module_account_identity_2(module_account: BankAccount) -> None:
+    # Same instance — balance is now 510.0 (not reset!)
+    # 同一インスタンスなので残高は510.0のまま（リセットされない！）
+    assert module_account.balance == 510.0
 
 
 # ---------------------------------------------------------------------------

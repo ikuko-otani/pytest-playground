@@ -108,10 +108,20 @@ def test_factory_two_accounts(make_account) -> None:
 # Step 4: パラメータ化 fixture
 # ---------------------------------------------------------------------------
 
+
 # TODO: Define a fixture `deposit_amount` parametrized with [10.0, 50.0, 100.0].
 # TODO: [10.0, 50.0, 100.0] でパラメータ化された fixture `deposit_amount` を定義してください。
+@pytest.fixture(params=[10.0, 50.0, 100.0], ids=["small", "medium", "large"])
+def deposit_amount(request) -> float:
+    # Each param value runs the test independently.
+    # 各パラメータ値で独立してテストが実行される。
+    return request.param
 
 
 # TODO: Write a test that uses both `account` and `deposit_amount`.
 #       Assert that after deposit, balance > 100.0.
 # TODO: `account` と `deposit_amount` を使い、入金後の残高が 100.0 超であることを確認してください。
+def test_deposit_increases_balance(account: BankAccount, deposit_amount: float) -> None:
+    # Arrange: account(balance=100.0), deposit_amount ∈ {10, 50, 100}
+    new_balance: float = account.deposit(deposit_amount)  # Act
+    assert new_balance > 100.0

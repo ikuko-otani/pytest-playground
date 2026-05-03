@@ -11,10 +11,20 @@ from src.sut import BankAccount, add
 # Step 1: 基本的な@pytest.fixtureとyieldによるteardown
 # ---------------------------------------------------------------------------
 
+
 # TODO: Define a fixture named `account` that creates a BankAccount("Alice", 100.0)
 #       and yields it, then prints a teardown message after the test.
 # TODO: fixture `account` を定義して BankAccount("Alice", 100.0) を yield し、
 #       テスト後にteardownメッセージを出力してください。
+@pytest.fixture
+def account() -> BankAccount:
+    # Arrange: create a fresh BankAccount before each test.
+    # 各テスト前にフレッシュなBankAccountを用意する。
+    acc = BankAccount("Alice", 100.0)
+    yield acc
+    # Teardown: runs after the test, even if it fails.
+    # テスト後（失敗時も含む）に実行される。
+    print(f"\n[teardown] {acc.owner} final balance: {acc.balance}")
 
 
 # TODO: Write a test `test_deposit` that uses the `account` fixture.
@@ -22,11 +32,18 @@ from src.sut import BankAccount, add
 #       Act:     call account.deposit(50.0)
 #       Assert:  balance == 150.0
 # TODO: `account` fixture を使う test_deposit を書いてください。
+def test_deposit(account: BankAccount) -> None:
+    # Arrange: account fixture provides BankAccount(balance=100.0)
+    new_balance: float = account.deposit(50.0)  # Act
+    assert new_balance == 150.0  # Assert
 
 
 # TODO: Write a test `test_withdraw_insufficient` that uses the `account` fixture
 #       and asserts that withdrawing 200.0 raises ValueError.
 # TODO: 200.0 出金で ValueError が出ることを検証するテストを書いてください。
+def test_withdraw_insufficient(account: BankAccount) -> None:
+    with pytest.raises(ValueError, match="Insufficient funds"):
+        account.withdraw(200.0)  # Act + Assert in one
 
 
 # ---------------------------------------------------------------------------

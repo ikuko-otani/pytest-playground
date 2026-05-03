@@ -6,6 +6,11 @@
 import pytest
 from src.sut import BankAccount, add
 
+
+def test_add() -> None:
+    assert add(1, 2) == 3
+
+
 # ---------------------------------------------------------------------------
 # Step 1: Basic @pytest.fixture + yield teardown
 # Step 1: 基本的な@pytest.fixtureとyieldによるteardown
@@ -125,3 +130,4 @@ def test_deposit_increases_balance(account: BankAccount, deposit_amount: float) 
     # Arrange: account(balance=100.0), deposit_amount ∈ {10, 50, 100}
     new_balance: float = account.deposit(deposit_amount)  # Act
     assert new_balance > 100.0
+    assert account.balance == 100.0 + deposit_amount

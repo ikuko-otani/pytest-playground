@@ -94,3 +94,8 @@ tests/
 - `yield` teardown → 各テスト後の DB ロールバック
 - Factory as Fixture → テスト用 Payment / User データ生成
 - `scope="session"` → PostgreSQL コンテナ起動コストの削減
+
+## Coverage
+
+- Date: 2026-05-03
+- src/sut.py: 85%

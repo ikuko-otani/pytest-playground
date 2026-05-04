@@ -34,6 +34,23 @@ async def test_health_returns_ok() -> None:
 #             POST /items と GET /items/{id} をテストする
 # ---------------------------------------------------------------------------
 
+# Step 2: POST /items and GET /items/{id} using shared async_client
+# 共有 async_client fixture を使って POST/GET をテストする
+
+
+async def test_create_and_fetch_item(async_client: AsyncClient) -> None:
+    # Arrange
+    payload = {"name": "apple"}
+    # Act
+    created = await async_client.post("/items", json=payload)
+    item_id: int = created.json()["id"]
+    fetched = await async_client.get(f"/items/{item_id}")
+    # Assert
+    assert created.status_code == 201
+    assert fetched.status_code == 200
+    assert fetched.json()["name"] == "apple"
+
+
 # ---------------------------------------------------------------------------
 # TODO Step 3: Test the 404 error path for GET /items/{item_id}
 # Step 3 — 存在しない ID で GET したときの 404 パスをテストする

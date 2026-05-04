@@ -21,3 +21,13 @@ from src.sut import app
 #       ) as client:
 #           yield client
 # ---------------------------------------------------------------------------
+
+
+@pytest_asyncio.fixture(scope="module", loop_scope="module")
+async def async_client() -> AsyncClient:
+    # Spin up the ASGI app without a real server
+    # 実サーバーを起動せずに ASGI アプリを動かす
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://test"
+    ) as client:
+        yield client

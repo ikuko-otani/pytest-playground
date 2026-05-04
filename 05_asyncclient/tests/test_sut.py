@@ -12,16 +12,20 @@ from src.sut import app
 # ---------------------------------------------------------------------------
 # TODO Step 1: Write a basic @pytest.mark.asyncio test for GET /health
 # Step 1 — GET /health の基本的な非同期テストを書く
-#
-# @pytest.mark.asyncio
-# async def test_health():
-#     # Arrange
-#     ...
-#     # Act
-#     ...
-#     # Assert
-#     ...
 # ---------------------------------------------------------------------------
+
+
+@pytest.mark.asyncio
+async def test_health_returns_ok() -> None:
+    # Arrange
+    transport = ASGITransport(app=app)
+    # Act
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.get("/health")
+    # Assert
+    assert response.status_code == 200
+    assert response.json() == {"status": "ok"}
+
 
 # ---------------------------------------------------------------------------
 # TODO Step 2: Add a module-scoped async_client fixture in conftest.py

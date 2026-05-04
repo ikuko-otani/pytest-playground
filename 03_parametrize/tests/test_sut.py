@@ -37,6 +37,26 @@ def test_add(a: int, b: int, expected: int) -> None:
 # ---------------------------------------------------------------------------
 # ✍️  Write parametrize with pytest.param here
 # ここに pytest.param を使ったパラメータ化を書く
+@pytest.mark.parametrize(
+    "amount, expected",
+    [
+        pytest.param(-1.0, "negative", id="below_zero"),
+        pytest.param(0.0, "zero", id="exact_zero"),
+        pytest.param(1.0, "small", id="small_positive"),
+        pytest.param(1_000_000.0, "large", id="one_million"),
+        pytest.param(
+            -999_999.0,
+            "negative",
+            marks=pytest.mark.xfail(reason="extreme negative: not yet handled"),
+            id="extreme_negative_xfail",
+        ),
+    ],
+)
+def test_classify_amount(amount: float, expected: str) -> None:
+    # Act
+    result: str = classify_amount(amount)
+    # Assert
+    assert result == expected
 
 
 # ---------------------------------------------------------------------------

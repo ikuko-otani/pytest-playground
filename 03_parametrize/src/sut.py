@@ -16,7 +16,13 @@ def classify_amount(amount: float) -> str:
     # 金額を分類する関数を実装してください
     # Expected: 'negative' | 'zero' | 'small' | 'large'
     # 期待値 'negative' | 'zero' | 'small' | 'large'
-    raise NotImplementedError
+    if amount < 0:
+        return "negative"
+    if amount == 0:
+        return "zero"
+    if amount < 10_000:
+        return "small"
+    return "large"
 
 
 def parse_currency_code(code: str) -> str:

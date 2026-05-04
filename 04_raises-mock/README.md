@@ -3,17 +3,17 @@
 ## What you will learn / 学習内容
 
 - **`pytest.raises`**: Test that your code raises the right exception with the right message.
-  - 日本語訳：`pytest.raises` — 正しい例外と正しいメッセージが送出されることをテストする。
+  - `pytest.raises` — 正しい例外と正しいメッセージが送出されることをテストする。
 - **`excinfo` object**: Inspect `.type`, `.value`, `.traceback` after the exception.
-  - 日本語訳：`excinfo` オブジェクト — 例外の `.type` / `.value` / `.traceback` を検査する。
+  - `excinfo` オブジェクト — 例外の `.type` / `.value` / `.traceback` を検査する。
 - **`match=` parameter**: Validate the exception message with a regex.
-  - 日本語訳：`match=` パラメータ — 正規表現で例外メッセージを検証する。
+  - `match=` パラメータ — 正規表現で例外メッセージを検証する。
 - **`unittest.mock.patch`**: Replace external dependencies with controlled fakes.
-  - 日本語訳：`unittest.mock.patch` — 外部依存を制御可能な偽物に差し替える。
+  - `unittest.mock.patch` — 外部依存を制御可能な偽物に差し替える。
 - **`side_effect`**: Simulate errors or dynamic return values.
-  - 日本語訳：`side_effect` — エラーや動的な戻り値をシミュレートする。
+  - `side_effect` — エラーや動的な戻り値をシミュレートする。
 - **`assert_called_once_with`**: Verify a mock was called with the right arguments.
-  - 日本語訳：`assert_called_once_with` — 正しい引数でモックが呼ばれたか検証する。
+  - `assert_called_once_with` — 正しい引数でモックが呼ばれたか検証する。
 
 ## Directory structure / ディレクトリ構成
 

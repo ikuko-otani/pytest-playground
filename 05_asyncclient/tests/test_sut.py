@@ -56,6 +56,17 @@ async def test_create_and_fetch_item(async_client: AsyncClient) -> None:
 # Step 3 — 存在しない ID で GET したときの 404 パスをテストする
 # ---------------------------------------------------------------------------
 
+
+async def test_get_nonexistent_item_returns_404(async_client: AsyncClient) -> None:
+    # Arrange
+    nonexistent_id = 99999
+    # Act
+    response = await async_client.get(f"/items/{nonexistent_id}")
+    # Assert
+    assert response.status_code == 404
+    assert response.json()["detail"] == "Item not found"
+
+
 # ---------------------------------------------------------------------------
 # TODO Step 4: Use loop_scope="module" and share a single event loop
 #             across multiple test functions

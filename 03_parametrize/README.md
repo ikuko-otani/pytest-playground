@@ -33,7 +33,7 @@ pytest tests/ --collect-only
 ## Coverage target / カバレッジ目標
 
 - Target: **90%+** (recorded after Step N+1)
-- Actual: _TBD_
+- Actual: 100%
 
 ## Flagship connection / Flagship への応用
 

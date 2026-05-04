@@ -97,3 +97,18 @@ def test_parse_currency_code_dynamic(currency_code: str) -> None:
     result: str = parse_currency_code(currency_code)
     # Assert
     assert result == currency_code.upper()
+
+
+@pytest.mark.parametrize(
+    "invalid_code",
+    [
+        pytest.param("XXX", id="unknown_code"),
+        pytest.param("", id="empty_string"),
+        pytest.param("us", id="lowercase_not_normalized"),
+    ],
+)
+def test_parse_currency_code_raises_for_invalid(invalid_code: str) -> None:
+    # Arrange: invalid_code is provided via parametrize
+    # Act & Assert
+    with pytest.raises(ValueError, match="Unknown currency code: .+"):
+        parse_currency_code(invalid_code)

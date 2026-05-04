@@ -18,4 +18,12 @@ def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
     # Dynamically parametrize 'currency_code' fixture if requested
     # テストが 'currency_code' 引数を要求したら動的にパラメータ化する
     if "currency_code" in metafunc.fixturenames:
-        metafunc.parametrize("currency_code", ["USD", "EUR", "JPY"], ids=lambda c: c)
+        metafunc.parametrize(
+            "currency_code",
+            [
+                "USD",
+                "EUR",
+                "JPY",
+            ],
+            ids=lambda c: c,
+        )

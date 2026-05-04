@@ -88,3 +88,12 @@ def test_add_cartesian(a: int, b: int) -> None:
 # ---------------------------------------------------------------------------
 # ✍️  (in conftest.py) implement pytest_generate_tests
 # （conftest.py に）pytest_generate_tests を実装する
+
+
+def test_parse_currency_code_dynamic(currency_code: str) -> None:
+    # Arrange: currency_code is injected by pytest_generate_tests
+    # currency_code は conftest の hook から動的に注入される
+    # Act
+    result: str = parse_currency_code(currency_code)
+    # Assert
+    assert result == currency_code.upper()

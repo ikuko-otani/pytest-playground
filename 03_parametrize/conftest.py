@@ -14,5 +14,8 @@ import pytest
 # ✍️  Implement pytest_generate_tests here in Step 4
 # ステップ4でここに実装する
 def pytest_generate_tests(metafunc: pytest.Metafunc) -> None:
-    pass  # TODO: implement dynamic parametrization
-    # 動的パラメータ化を実装してください
+    # TODO: implement dynamic parametrization
+    # Dynamically parametrize 'currency_code' fixture if requested
+    # テストが 'currency_code' 引数を要求したら動的にパラメータ化する
+    if "currency_code" in metafunc.fixturenames:
+        metafunc.parametrize("currency_code", ["USD", "EUR", "JPY"], ids=lambda c: c)

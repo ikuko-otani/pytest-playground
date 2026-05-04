@@ -25,9 +25,15 @@ def classify_amount(amount: float) -> str:
     return "large"
 
 
+VALID_CODES = {"USD", "EUR", "JPY", "GBP", "CHF"}
+
+
 def parse_currency_code(code: str) -> str:
     # TODO: implement
     # 通貨コードを検証・正規化する関数を実装してください
     # Expected: raise ValueError for invalid codes
     # 無効なコードは ValueError を raise する
-    raise NotImplementedError
+    normalized = code.strip().upper()
+    if normalized not in VALID_CODES:
+        raise ValueError(f"Unknown currency code: {code!r}")
+    return normalized

@@ -6,12 +6,29 @@
 import pytest
 from src.sut import add, classify_amount, parse_currency_code
 
+
 # ---------------------------------------------------------------------------
 # Step 1: Basic parametrize — add()
 # ステップ1 基本的なパラメータ化 — add()
 # ---------------------------------------------------------------------------
 # ✍️  Write @pytest.mark.parametrize and test body here
 # ここに @pytest.mark.parametrize とテスト本体を書く
+@pytest.mark.parametrize(
+    "a, b, expected",
+    [
+        (1, 2, 3),  # normal case
+        (0, 0, 0),  # zero boundary
+        (-1, 1, 0),  # negative + positive
+        (100, -50, 50),  # large values
+    ],
+)
+def test_add(a: int, b: int, expected: int) -> None:
+    # Arrange: inputs are provided via parametrize
+    # 入力はパラメータ化で与えられる
+    # Act
+    result: int = add(a, b)
+    # Assert
+    assert result == expected
 
 
 # ---------------------------------------------------------------------------

@@ -8,7 +8,7 @@
 def add(a: int, b: int) -> int:
     # TODO: implement
     # 加算を実装してください
-    raise NotImplementedError
+    return a + b
 
 
 def classify_amount(amount: float) -> str:

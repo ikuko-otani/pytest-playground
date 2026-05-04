@@ -72,3 +72,14 @@ async def test_get_nonexistent_item_returns_404(async_client: AsyncClient) -> No
 #             across multiple test functions
 # Step 4 — loop_scope="module" で複数テスト関数がイベントループを共有する
 # ---------------------------------------------------------------------------
+
+
+async def test_list_items_contains_created_item(async_client: AsyncClient) -> None:
+    # Arrange: create an item first (state shared via module-scoped client)
+    # module スコープのクライアント経由で先に作成されたデータが見える
+    # Act
+    response = await async_client.get("items")
+    # Assert
+    assert response.status_code == 200
+    names: list[str] = [item["name"] for item in response.json()]
+    assert "apple" in names  # Created in Step 2

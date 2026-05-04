@@ -17,17 +17,37 @@ from src.sut import divide, convert_amount
 
 # TODO: Write a test that verifies divide() raises ValueError when b=0
 # b=0 のとき ValueError が送出されることを検証するテストを書く
-# ✍️ YOUR CODE HERE
+
+
+def test_divide_raises_on_zero() -> None:
+    # Arrange
+    a, b = 10.0, 0.0
+    # Act & Assert
+    with pytest.raises(ValueError):
+        divide(a, b)
 
 
 # TODO: Write a test using match= to check the error message
 # match= を使ってエラーメッセージを正規表現で検証するテストを書く
-# ✍️ YOUR CODE HERE
+
+
+def test_divide_raises_with_message() -> None:
+    # Arrange / Act / Assert
+    with pytest.raises(ValueError, match=r"Cannot divide by zero"):
+        divide(5.0, 0.0)
 
 
 # TODO: Write a test verifying the raised exception value directly via excinfo
 # excinfo オブジェクトで例外の値を直接検証するテストを書く
-# ✍️ YOUR CODE HERE
+
+
+def test_divide_raises_excinfo() -> None:
+    # Arrange / Act / Assert
+    with pytest.raises(ValueError) as excinfo:
+        divide(1.0, 0.0)
+    # Assert on the exception value directly
+    # 例外の値を直接アサートする
+    assert "zero" in str(excinfo.value)
 
 
 # ---------------------------------------------------------------------------
@@ -37,14 +57,11 @@ from src.sut import divide, convert_amount
 
 # TODO: Write a test using @patch to mock fetch_exchange_rate
 # @patch デコレータで fetch_exchange_rate をモックするテストを書く
-# ✍️ YOUR CODE HERE
 
 
 # TODO: Write a test using `with patch(...)` context manager form
 # with patch(...) コンテキスト形式でモックするテストを書く
-# ✍️ YOUR CODE HERE
 
 
 # TODO: Write a test that uses side_effect to simulate an external API failure
 # side_effect で外部APIの失敗をシミュレートするテストを書く
-# ✍️ YOUR CODE HERE

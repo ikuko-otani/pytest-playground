@@ -49,4 +49,4 @@ pytest --cov=src --cov-report=term-missing
 
 <!-- Update after Step N+1 -->
 - [ ] Target: 85%+
-- [ ] Actual: TBD
+- [ ] Actual: 100%

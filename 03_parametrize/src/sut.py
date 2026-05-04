@@ -1,0 +1,39 @@
+# Chapter T-03: Parametrize
+# 第3章 パラメータ化
+# Ref: https://docs.pytest.org/en/stable/how-to/parametrize.html
+# TODO: Implement the code to be tested.
+# テスト対象のコードを実装してください
+
+
+def add(a: int, b: int) -> int:
+    # TODO: implement
+    # 加算を実装してください
+    return a + b
+
+
+def classify_amount(amount: float) -> str:
+    # TODO: implement
+    # 金額を分類する関数を実装してください
+    # Expected: 'negative' | 'zero' | 'small' | 'large'
+    # 期待値 'negative' | 'zero' | 'small' | 'large'
+    if amount < 0:
+        return "negative"
+    if amount == 0:
+        return "zero"
+    if amount < 10_000:
+        return "small"
+    return "large"
+
+
+VALID_CODES = {"USD", "EUR", "JPY", "GBP", "CHF"}
+
+
+def parse_currency_code(code: str) -> str:
+    # TODO: implement
+    # 通貨コードを検証・正規化する関数を実装してください
+    # Expected: raise ValueError for invalid codes
+    # 無効なコードは ValueError を raise する
+    normalized = code.strip().upper()
+    if normalized not in VALID_CODES:
+        raise ValueError(f"Unknown currency code: {code!r}")
+    return normalized

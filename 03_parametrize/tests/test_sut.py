@@ -6,13 +6,14 @@
 import pytest
 from src.sut import add, classify_amount, parse_currency_code
 
-
 # ---------------------------------------------------------------------------
 # Step 1: Basic parametrize — add()
 # ステップ1 基本的なパラメータ化 — add()
 # ---------------------------------------------------------------------------
 # ✍️  Write @pytest.mark.parametrize and test body here
 # ここに @pytest.mark.parametrize とテスト本体を書く
+
+
 @pytest.mark.parametrize(
     "a, b, expected",
     [
@@ -37,6 +38,8 @@ def test_add(a: int, b: int, expected: int) -> None:
 # ---------------------------------------------------------------------------
 # ✍️  Write parametrize with pytest.param here
 # ここに pytest.param を使ったパラメータ化を書く
+
+
 @pytest.mark.parametrize(
     "amount, expected",
     [
@@ -65,6 +68,18 @@ def test_classify_amount(amount: float, expected: str) -> None:
 # ---------------------------------------------------------------------------
 # ✍️  Write stacked @pytest.mark.parametrize here
 # ここにスタックデコレーターを書く
+
+
+@pytest.mark.parametrize("a", [10, 20])
+@pytest.mark.parametrize("b", [0, 1, -1])
+def test_add_cartesian(a: int, b: int) -> None:
+    # Arrange: a x b cartesian product (2 x 3 = 6 cases)
+    # a × b の直積（2×3 = 6ケース）
+    # Act
+    result: int = add(a, b)
+    # Assert
+    assert isinstance(result, int)
+    assert result == a + b
 
 
 # ---------------------------------------------------------------------------

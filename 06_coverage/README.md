@@ -9,7 +9,7 @@
 - Exclude code with `# pragma: no cover`
 - Understand **why coverage is a means, not a goal**
 
-日本語訳：
+
 - `pytest-cov` を使って **行カバレッジ** と **ブランチカバレッジ** を計測する
 - カバレッジレポートの `Stmts`, `Miss`, `Cover`, `Missing` 列を読む
 - `--cov-fail-under` で CI のカバレッジゲートを設定する

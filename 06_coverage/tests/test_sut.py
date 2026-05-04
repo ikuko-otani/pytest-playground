@@ -1,11 +1,10 @@
 # Chapter T-06: Coverage (pytest-cov)
-# 日本語訳：第6章 - カバレッジ（pytest-cov）
+# 第6章 - カバレッジ（pytest-cov）
 # Pattern: AAA (Arrange - Act - Assert)
-# 日本語訳：パターン：AAA（準備 - 実行 - 検証）
+# パターン：AAA（準備 - 実行 - 検証）
 
 import pytest
 from src.sut import add, divide, classify_score, is_even
-
 
 # ---------------------------------------------------------------------------
 # Step 1: Basic line coverage — add() and is_even()

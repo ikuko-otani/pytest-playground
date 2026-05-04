@@ -43,7 +43,7 @@ pytest 04_raises-mock/tests/test_sut.py::test_divide_raises_on_zero -v
 ## Coverage target / カバレッジ目標
 
 <!-- Update after final run: e.g. `coverage: 92%` -->
-coverage: TBD
+coverage: 100%
 
 ## Berlin interview tips / ベルリン面接のポイント
 

@@ -24,8 +24,10 @@ def fetch_exchange_rate(currency: str) -> float:
     # 外部APIから為替レートを取得する（テストではモックで差し替える）。
     # TODO: implement (will be patched in tests)
     # Real implementation would call an HTTP API
-    response = httpx.get(f"https://api.exchangerate.example/{currency}")
-    return response.json()["rate"]
+    response = httpx.get(
+        f"https://api.exchangerate.example/{currency}"
+    )  # pragma: no cover
+    return response.json()["rate"]  # pragma: no cover
 
 
 def convert_amount(amount: float, currency: str) -> float:

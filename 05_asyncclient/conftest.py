@@ -1,8 +1,8 @@
 # conftest.py — T-05: pytest-asyncio (AsyncClient)
-# 日本語訳：conftest.py — 第5章の共有 fixture 置き場
+# conftest.py — 第5章の共有 fixture 置き場
 #
 # Fixtures defined here are available to all tests under 05_asyncclient/
-# 日本語訳：ここに定義した fixture は 05_asyncclient/ 配下の全テストで利用できる
+# ここに定義した fixture は 05_asyncclient/ 配下の全テストで利用できる
 
 import pytest_asyncio
 from httpx import AsyncClient, ASGITransport
@@ -11,7 +11,7 @@ from src.sut import app
 
 # ---------------------------------------------------------------------------
 # TODO: Implement an async_client fixture with appropriate scope
-# 日本語訳：適切なスコープで async_client fixture を実装する
+# 適切なスコープで async_client fixture を実装する
 #
 # Hint:
 #   @pytest_asyncio.fixture(scope="module", loop_scope="module")

@@ -59,9 +59,50 @@ def test_divide_raises_excinfo() -> None:
 # @patch デコレータで fetch_exchange_rate をモックするテストを書く
 
 
+@patch("src.sut.fetch_exchange_rate", return_value=1.35)
+def test_convert_with_patch_decorator(mock_rate: MagicMock) -> None:
+    # Arrange: rate is mocked to 1.35
+    # Act
+    result: float = convert_amount(100.0, "USD")
+    # Assert
+    assert result == 135.0
+    mock_rate.assert_called_once_with("USD")
+
+
 # TODO: Write a test using `with patch(...)` context manager form
 # with patch(...) コンテキスト形式でモックするテストを書く
 
 
+def test_convert_with_patch_context() -> None:
+    with patch("src.sut.fetch_exchange_rate", return_value=1.10) as mock_rate:
+        result: float = convert_amount(200.0, "EUR")
+        assert result == pytest.approx(220.0)
+        mock_rate.assert_called_once_with("EUR")
+
+
 # TODO: Write a test that uses side_effect to simulate an external API failure
 # side_effect で外部APIの失敗をシミュレートするテストを書く
+
+
+def test_convert_raises_with_api_fails() -> None:
+    with patch("src.sut.fetch_exchange_rate", side_effect=ConnectionError("API down")):
+        with pytest.raises(ConnectionError, match="API down"):
+            convert_amount(100.0, "USD")
+
+
+# excinfo の詳細検証と浮動小数点近似テストを追記する
+
+
+def test_divide_result_approx() -> None:
+    # pytest.approx handles floating-point imprecision
+    # 浮動小数点の誤差を吸収する
+    result: float = divide(1.0, 3.0)
+    assert result == pytest.approx(0.3333, rel=1e-3)
+
+
+def test_divide_excinfo_type() -> None:
+    with pytest.raises(ValueError) as excinfo:
+        divide(7.0, 0.0)
+    # Verify the exact exception type (not a subclass)
+    # サブクラスではなく正確な型を確認する
+    assert excinfo.type is ValueError

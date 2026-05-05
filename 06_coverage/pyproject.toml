@@ -1,0 +1,12 @@
+[tool.coverage.run]
+branch = true
+source = ["src"]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 85
+exclude_also = [
+    "if __name__ == .__main__.:",
+    "def unreachable_function",
+]

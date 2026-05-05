@@ -68,6 +68,6 @@ pytest --cov=src --cov-report=html
 
 | Module | Stmts | Miss | Branch | BrPart | Cover |
 |--------|-------|------|--------|--------|-------|
-| `src/sut.py` | — | — | — | — | — |
+| `src/sut.py` | 14 | 0 | 6 | 0 | 100% |
 
 > Coverage target for `payment-ledger-api`: **85%+**

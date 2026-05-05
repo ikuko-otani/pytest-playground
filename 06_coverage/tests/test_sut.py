@@ -68,3 +68,15 @@ def test_classify_score_fail() -> None:
 
 # TODO: Test normal division and zero-division ValueError
 # TODO: 通常の除算と ZeroDivisionError の両方をテストする
+
+
+def test_divide_normal() -> None:
+    result: float = divide(10.0, 2.0)
+    assert result == 5.0
+
+
+def test_divide_by_zero_raises_value_error() -> None:
+    # Arrange: b = 0 triggers the exception branch
+    # Act & Assert: pytest.raises captures the exception
+    with pytest.raises(ValueError, match="Cannot divide by zero"):
+        divide(10.0, 0.0)
